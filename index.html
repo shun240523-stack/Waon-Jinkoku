@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>和温陣国 公式サイト</title>
+    <!-- アイコンの追加 -->
+    <link rel="icon" href="icon.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=DotGothic16&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            font-family: 'Noto Serif JP', serif;
+        }
+        .pixel-font {
+            font-family: 'DotGothic16', sans-serif;
+        }
+        .hero-section {
+            position: relative;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-bottom: 2px solid #333;
+        }
+        .hero-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+            filter: grayscale(1) contrast(1.2);
+            z-index: 0;
+        }
+        .yin-yang-overlay {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,0,0,0.2) 0%, rgba(0,0,255,0.2) 100%);
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: pulse 8s ease-in-out infinite alternate;
+            z-index: 1;
+        }
+        @keyframes pulse {
+            from { transform: scale(1); opacity: 0.2; }
+            to { transform: scale(1.2); opacity: 0.4; }
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #ff0000;
+            background: rgba(255, 255, 255, 0.06);
+        }
+        .flag-frame, .staff-frame {
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 10px;
+            background: #000;
+        }
+        .special-staff-gradient {
+            background: linear-gradient(to bottom, transparent, rgba(212, 175, 55, 0.1), transparent);
+        }
+        .info-label {
+            color: #ff0000;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ナビゲーション -->
+    <nav class="fixed w-full z-50 bg-black/80 border-b border-white/10 px-6 py-4 flex justify-between items-center backdrop-blur-md">
+        <div class="text-2xl font-bold tracking-widest pixel-font flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-b from-red-600 to-blue-700 shadow-[0_0_10px_rgba(255,0,0,0.5)]"></div>
+            和温陣国
+        </div>
+        <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest">
+            <a href="#about" class="hover:text-red-500 transition">建国理念</a>
+            <a href="#culture" class="hover:text-blue-500 transition">杖文化</a>
+            <a href="#tradition" class="hover:text-red-500 transition">王の儀礼</a>
+            <a href="#contact" class="hover:text-blue-500 transition">謁見の間</a>
+        </div>
+    </nav>
+
+    <!-- ヒーローセクション -->
+    <section class="hero-section">
+        <img src="旗.png" alt="和温陣国の旗 背景" class="hero-bg-image">
+        <div class="yin-yang-overlay"></div>
+        <div class="text-center z-10 px-4">
+            <h1 class="text-6xl md:text-8xl font-bold mb-6 tracking-tighter pixel-font drop-shadow-2xl">和温陣国</h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-4 max-w-2xl mx-auto font-light leading-relaxed">
+                均衡と調和、そして秩序ある混沌。<br>
+                古の知恵をデジタルの極地に刻む国家。
+            </p>
+            <p class="text-sm tracking-[0.3em] text-zinc-500 mb-10 pixel-font uppercase">
+                Location: La-Ukuka / Capital: Wajin-Tofu
+            </p>
+            <div class="flex justify-center gap-6">
+                <button class="bg-white text-black px-10 py-4 rounded-sm font-bold hover:bg-red-600 hover:text-white transition duration-300 pixel-font">
+                    国勢調査
+                </button>
+                <button class="border border-white px-10 py-4 rounded-sm font-bold hover:bg-blue-600 transition duration-300 pixel-font">
+                    入国申請
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 国旗と理念・国家詳細 -->
+    <section id="about" class="py-24 px-6 max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div class="order-2 md:order-1">
+                <div class="flag-frame shadow-2xl">
+                    <img src="旗.png" alt="和温陣国の旗" class="w-full h-auto block">
+                    <div class="absolute bottom-0 right-0 bg-black/70 px-3 py-1 text-[10px] tracking-widest pixel-font border-t border-l border-white/20">
+                        NATIONAL_FLAG_VER_1.0
+                    </div>
+                </div>
+                <!-- 国家詳細カード -->
+                <div class="mt-8 grid grid-cols-2 gap-4">
+                    <div class="card p-4">
+                        <div class="info-label pixel-font tracking-tighter">CAPITAL</div>
+                        <div class="text-lg font-bold">和陣当府</div>
+                    </div>
+                    <div class="card p-4">
+                        <div class="info-label pixel-font tracking-tighter">LOCATION</div>
+                        <div class="text-lg font-bold">ラ＝ウクカ大陸</div>
+                    </div>
+                </div>
+            </div>
+            <div class="order-1 md:order-2">
+                <h2 class="text-4xl font-bold mb-8 pixel-font border-l-4 border-red-600 pl-6">和温陣の旗</h2>
+                <p class="text-gray-300 mb-8 leading-loose text-lg">
+                    我らが国旗に刻まれた中央の「ピクセル陰陽」は、伝統的な調和と現代のデジタル情報の融合を象徴している。周囲の幾何学的な「陣」の模様は、外敵を退け、内なる平和を守る強固な結界を表す。
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4 group">
+                        <div class="w-4 h-4 bg-red-600 rounded-full group-hover:scale-125 transition"></div>
+                        <span class="text-sm tracking-widest">赤：生命の情熱と活力</span>
+                    </div>
+                    <div class="flex items-center gap-4 group">
+                        <div class="w-4 h-4 bg-blue-700 rounded-full group-hover:scale-125 transition"></div>
+                        <span class="text-sm tracking-widest">青：知性と精神の静寂</span>
+                    </div>
+                    <div class="flex items-center gap-4 group">
+                        <div class="w-4 h-4 bg-white rounded-full group-hover:scale-125 transition"></div>
+                        <span class="text-sm tracking-widest">白：可能性に満ちた空（くう）</span>
+                    </div>
+                    <div class="flex items-center gap-4 group">
+                        <div class="w-4 h-4 bg-zinc-800 rounded-full group-hover:scale-125 transition"></div>
+                        <span class="text-sm tracking-widest">黒：絶対的な秩序と基盤</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 杖文化 -->
+    <section id="culture" class="py-24 bg-zinc-900/20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold mb-12 text-center pixel-font">和温陣国の杖文化</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <p class="text-lg text-gray-300 leading-relaxed mb-6">
+                        和温陣国において「杖」は特別な意味を持つ。それは単なる歩行の補助具ではなく、個人の精神性や身分、そして扱う「陣」の特性を体現する一般的な道具である。
+                    </p>
+                    <p class="text-gray-400 mb-8">
+                        国民は各々の役割に応じた杖を所持しており、その形状や装飾は多岐にわたる。
+                    </p>
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="card p-4 rounded-sm flex items-center gap-4">
+                            <span class="text-blue-400 font-bold">● 一般的な杖の多様性</span>
+                            <span class="text-xs text-zinc-500">（画像参照：杖.png）</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="staff-frame shadow-xl">
+                    <img src="杖.png" alt="杖の種類例（カラー）" class="w-full h-auto block grayscale-[0.2] hover:grayscale-0 transition duration-500">
+                    <div class="absolute -top-3 -right-3 bg-black border border-white/20 px-3 py-1 text-[10px] tracking-widest pixel-font shadow-lg">
+                        VARIATION_OF_STAFFS
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 王の儀礼（和温の杖） -->
+    <section id="tradition" class="py-24 border-y border-white/5 special-staff-gradient">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="inline-block mb-8 p-4 bg-black/50 border border-yellow-600/30 rounded-lg shadow-[0_0_20px_rgba(212,175,55,0.2)]">
+                <img src="和温の杖.png" alt="和温の杖" class="h-48 w-auto mx-auto block">
+            </div>
+            <h2 class="text-4xl font-bold mb-10 pixel-font">王（仮）専用：和温の杖</h2>
+            <p class="text-xl text-gray-300 leading-relaxed mb-12">
+                数ある杖の中でも、唯一無二の存在が<span class="text-yellow-500 font-bold underline decoration-yellow-500/30 underline-offset-8">「和温の杖」</span>である。
+                即位の儀において王（仮）へと託されるこの杖は、国家の均衡そのものを象徴し、すべての「陣」を統べる権能を有する。
+            </p>
+            <div class="grid md:grid-cols-3 gap-8 text-left">
+                <div class="card p-8 rounded-sm border-t-2 border-t-red-600">
+                    <h3 class="font-bold text-red-500 mb-4 text-xl pixel-font">導きの権能</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">全ての杖の原点として、民の精神を正しい調和へと導く。</p>
+                </div>
+                <div class="card p-8 rounded-sm border-t-2 border-t-blue-500">
+                    <h3 class="font-bold text-blue-400 mb-4 text-xl pixel-font">裁きの権能</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">不調和を正し、国家の秩序を絶対的なものとする。</p>
+                </div>
+                <div class="card p-8 rounded-sm border-t-2 border-t-yellow-500">
+                    <h3 class="font-bold text-yellow-500 mb-4 text-xl pixel-font">創造の権能</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">新たな世界の陣を描き、和温の理を拡張する。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer id="contact" class="bg-black py-16 border-t border-white/10 text-center">
+        <div class="mb-10">
+            <div class="flex justify-center gap-8 text-sm tracking-[0.2em] font-light">
+                <span class="text-zinc-500 hover:text-white cursor-pointer transition">Terminal</span>
+                <span class="text-zinc-500 hover:text-white cursor-pointer transition">Repository</span>
+                <span class="text-zinc-500 hover:text-white cursor-pointer transition">Network</span>
+            </div>
+        </div>
+        <p class="text-zinc-600 text-[10px] tracking-widest uppercase">
+            &copy; 2024 和温陣国 Official Site. <br class="md:hidden"> All rights reserved by King (Tentative).
+        </p>
+    </footer>
+
+    <script>
+        // スムーススクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
