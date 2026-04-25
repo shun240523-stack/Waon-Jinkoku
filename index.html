@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +10,11 @@
     <meta property="og:description" content="和温陣国の公式サイト。歴史・文化・地理情報を優しくまとめた游忳展示アーカイブ。" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://ec2045.github.io/Waon-Jinkoku/" />
-    <meta property="og:site_name" content="WATCH ALL COMPANY." />
     <!-- アイコンの追加 -->
     <link rel="icon" href="icon.png" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=DotGothic16&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=DotGothic16&display=swap"
+        rel="stylesheet">
     <style>
         body {
             background-color: #0a0a0a;
@@ -21,9 +22,11 @@
             font-family: 'Noto Serif JP', serif;
             scroll-behavior: smooth;
         }
+
         .pixel-font {
             font-family: 'DotGothic16', sans-serif;
         }
+
         .hero-section {
             position: relative;
             height: 90vh;
@@ -33,6 +36,7 @@
             overflow: hidden;
             border-bottom: 2px solid #333;
         }
+
         .hero-bg-image {
             position: absolute;
             top: 0;
@@ -44,40 +48,55 @@
             filter: grayscale(1) contrast(1.2);
             z-index: 0;
         }
+
         .yin-yang-overlay {
             position: absolute;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(255,0,0,0.2) 0%, rgba(0,0,255,0.2) 100%);
+            background: radial-gradient(circle, rgba(255, 0, 0, 0.2) 0%, rgba(0, 0, 255, 0.2) 100%);
             border-radius: 50%;
             filter: blur(60px);
             animation: pulse 8s ease-in-out infinite alternate;
             z-index: 1;
         }
+
         @keyframes pulse {
-            from { transform: scale(1); opacity: 0.2; }
-            to { transform: scale(1.2); opacity: 0.4; }
+            from {
+                transform: scale(1);
+                opacity: 0.2;
+            }
+
+            to {
+                transform: scale(1.2);
+                opacity: 0.4;
+            }
         }
+
         .card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
         }
+
         .card:hover {
             transform: translateY(-5px);
             border-color: #ff0000;
             background: rgba(255, 255, 255, 0.06);
         }
-        .flag-frame, .staff-frame {
+
+        .flag-frame,
+        .staff-frame {
             position: relative;
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 10px;
             background: #000;
         }
+
         .special-staff-gradient {
             background: linear-gradient(to bottom, transparent, rgba(212, 175, 55, 0.1), transparent);
         }
+
         .info-label {
             color: #ff0000;
             font-size: 0.75rem;
@@ -94,9 +113,10 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.9);
+            background-color: rgba(0, 0, 0, 0.9);
             backdrop-filter: blur(8px);
         }
+
         .modal-content {
             background-color: #111;
             margin: 5% auto;
@@ -105,8 +125,9 @@
             width: 90%;
             max-width: 600px;
             position: relative;
-            box-shadow: 0 0 30px rgba(255,0,0,0.2);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.2);
         }
+
         .close-btn {
             position: absolute;
             right: 20px;
@@ -115,9 +136,14 @@
             font-size: 30px;
             cursor: pointer;
         }
-        .close-btn:hover { color: white; }
 
-        input, select, textarea {
+        .close-btn:hover {
+            color: white;
+        }
+
+        input,
+        select,
+        textarea {
             background: #1a1a1a;
             border: 1px solid #333;
             color: white;
@@ -126,10 +152,14 @@
             margin-top: 8px;
             border-radius: 2px;
         }
-        input:focus, select:focus, textarea:focus {
+
+        input:focus,
+        select:focus,
+        textarea:focus {
             outline: none;
             border-color: #ff0000;
         }
+
         label {
             font-size: 0.8rem;
             color: #aaa;
@@ -138,12 +168,16 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- ナビゲーション -->
-    <nav class="fixed w-full z-50 bg-black/80 border-b border-white/10 px-6 py-4 flex justify-between items-center backdrop-blur-md">
+    <nav
+        class="fixed w-full z-50 bg-black/80 border-b border-white/10 px-6 py-4 flex justify-between items-center backdrop-blur-md">
         <div class="text-2xl font-bold tracking-widest pixel-font flex items-center gap-3">
-            <div class="w-8 h-8 rounded-full bg-gradient-to-b from-red-600 to-blue-700 shadow-[0_0_10px_rgba(255,0,0,0.5)]"></div>
+            <div
+                class="w-8 h-8 rounded-full bg-gradient-to-b from-red-600 to-blue-700 shadow-[0_0_10px_rgba(255,0,0,0.5)]">
+            </div>
             和温陣国
         </div>
         <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest">
@@ -169,10 +203,12 @@
                 Location: La-Ukuka / Capital: Wajin-Tofu
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-6">
-                <button onclick="openModal('censusModal')" class="bg-white text-black px-10 py-4 rounded-sm font-bold hover:bg-red-600 hover:text-white transition duration-300 pixel-font">
+                <button onclick="openModal('censusModal')"
+                    class="bg-white text-black px-10 py-4 rounded-sm font-bold hover:bg-red-600 hover:text-white transition duration-300 pixel-font">
                     国勢調査
                 </button>
-                <button onclick="openModal('entryModal')" class="border border-white px-10 py-4 rounded-sm font-bold hover:bg-blue-600 transition duration-300 pixel-font">
+                <button onclick="openModal('entryModal')"
+                    class="border border-white px-10 py-4 rounded-sm font-bold hover:bg-blue-600 transition duration-300 pixel-font">
                     入国申請
                 </button>
             </div>
@@ -185,7 +221,8 @@
             <div class="order-2 md:order-1">
                 <div class="flag-frame shadow-2xl">
                     <img src="旗.png" alt="和温陣国の旗" class="w-full h-auto block">
-                    <div class="absolute bottom-0 right-0 bg-black/70 px-3 py-1 text-[10px] tracking-widest pixel-font border-t border-l border-white/20">
+                    <div
+                        class="absolute bottom-0 right-0 bg-black/70 px-3 py-1 text-[10px] tracking-widest pixel-font border-t border-l border-white/20">
                         NATIONAL_FLAG_VER_1.0
                     </div>
                 </div>
@@ -248,8 +285,10 @@
                     </div>
                 </div>
                 <div class="staff-frame shadow-xl">
-                    <img src="杖.png" alt="杖の種類例（カラー）" class="w-full h-auto block grayscale-[0.2] hover:grayscale-0 transition duration-500">
-                    <div class="absolute -top-3 -right-3 bg-black border border-white/20 px-3 py-1 text-[10px] tracking-widest pixel-font shadow-lg">
+                    <img src="杖.png" alt="杖の種類例（カラー）"
+                        class="w-full h-auto block grayscale-[0.2] hover:grayscale-0 transition duration-500">
+                    <div
+                        class="absolute -top-3 -right-3 bg-black border border-white/20 px-3 py-1 text-[10px] tracking-widest pixel-font shadow-lg">
                         VARIATION_OF_STAFFS
                     </div>
                 </div>
@@ -260,12 +299,14 @@
     <!-- 王の儀礼（和温の杖） -->
     <section id="tradition" class="py-24 border-y border-white/5 special-staff-gradient">
         <div class="max-w-4xl mx-auto px-6 text-center">
-            <div class="inline-block mb-8 p-4 bg-black/50 border border-yellow-600/30 rounded-lg shadow-[0_0_20px_rgba(212,175,55,0.2)]">
+            <div
+                class="inline-block mb-8 p-4 bg-black/50 border border-yellow-600/30 rounded-lg shadow-[0_0_20px_rgba(212,175,55,0.2)]">
                 <img src="和温の杖.png" alt="和温の杖" class="h-48 w-auto mx-auto block">
             </div>
             <h2 class="text-4xl font-bold mb-10 pixel-font">王（仮）専用：和温の杖</h2>
             <p class="text-xl text-gray-300 leading-relaxed mb-12">
-                数ある杖の中でも、唯一無二の存在が<span class="text-yellow-500 font-bold underline decoration-yellow-500/30 underline-offset-8">「和温の杖」</span>である。
+                数ある杖の中でも、唯一無二の存在が<span
+                    class="text-yellow-500 font-bold underline decoration-yellow-500/30 underline-offset-8">「和温の杖」</span>である。
                 即位の儀において王（仮）へと託されるこの杖は、国家の均衡そのものを象徴し、すべての「陣」を統べる権能を有する。
             </p>
             <div class="grid md:grid-cols-3 gap-8 text-left">
@@ -299,8 +340,12 @@
                     ファイル形式: .txt / 文字コード: UTF-8<br>
                     著: 歴代の記録官
                 </p>
-                <button onclick="downloadHistory()" class="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-12 rounded-sm transition duration-300 pixel-font flex items-center gap-3 mx-auto">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                <button onclick="downloadHistory()"
+                    class="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-12 rounded-sm transition duration-300 pixel-font flex items-center gap-3 mx-auto">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                    </svg>
                     歴史書をダウンロード
                 </button>
             </div>
@@ -317,7 +362,8 @@
             </div>
         </div>
         <p class="text-zinc-600 text-[10px] tracking-widest uppercase">
-            &copy; 2024 和温陣国 Official Site. <br class="md:hidden">  All the countries and continents mentioned here are fictional.
+            &copy; 2024 和温陣国 Official Site. <br class="md:hidden"> All the countries and continents mentioned here are
+            fictional.
         </p>
     </footer>
 
@@ -329,7 +375,7 @@
             <form id="censusForm" onsubmit="handleForm(event, '国勢調査が完了しました。貴殿の精神波形を記録しました。')">
                 <label>氏名（真名）</label>
                 <input type="text" required placeholder="例：ラ＝ウクカの開拓者">
-                
+
                 <label>現在の所持杖のタイプ</label>
                 <select required>
                     <option value="">選択してください</option>
@@ -349,8 +395,9 @@
 
                 <label>国家への貢献意欲</label>
                 <input type="range" min="0" max="100" class="mt-4">
-                
-                <button type="submit" class="w-full bg-red-600 text-white py-4 mt-8 font-bold hover:bg-red-700 transition pixel-font">調査回答を送信</button>
+
+                <button type="submit"
+                    class="w-full bg-red-600 text-white py-4 mt-8 font-bold hover:bg-red-700 transition pixel-font">調査回答を送信</button>
             </form>
         </div>
     </div>
@@ -363,10 +410,10 @@
             <form id="entryForm" onsubmit="handleForm(event, '入国申請を受理しました。和陣当府の審査をお待ちください。')">
                 <label>申請者名</label>
                 <input type="text" required placeholder="Name / ID">
-                
+
                 <label>入国目的</label>
                 <textarea rows="3" required placeholder="和温の理を学ぶため、等"></textarea>
-                
+
                 <label>持ち込み希望の杖（種類）</label>
                 <input type="text" placeholder="例：樫の木の杖">
 
@@ -375,7 +422,8 @@
                     <span class="text-xs text-gray-400">「和温の陣」における秩序を遵守することを誓います。</span>
                 </div>
 
-                <button type="submit" class="w-full bg-blue-600 text-white py-4 mt-8 font-bold hover:bg-blue-700 transition pixel-font">入国申請を提出</button>
+                <button type="submit"
+                    class="w-full bg-blue-600 text-white py-4 mt-8 font-bold hover:bg-blue-700 transition pixel-font">入国申請を提出</button>
             </form>
         </div>
     </div>
@@ -770,7 +818,7 @@
             event.preventDefault();
             const modalId = event.target.closest('.modal').id;
             closeModal(modalId);
-            
+
             // 完了メッセージ表示
             document.getElementById('msgText').innerText = message;
             document.getElementById('msgBox').classList.remove('hidden');
@@ -781,7 +829,7 @@
         }
 
         // ウィンドウ外クリックでモーダルを閉じる
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (event.target.className === 'modal') {
                 event.target.style.display = "none";
                 document.body.style.overflow = "auto";
@@ -802,4 +850,5 @@
         });
     </script>
 </body>
+
 </html>
