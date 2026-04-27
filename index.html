@@ -1,42 +1,32 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>和温陣国 公式サイト</title>
-    <meta name="description" content="和温陣国の公式サイト。歴史・文化・地理情報を優しくまとめた游忳展示アーカイブ。" />
-    <meta property="og:title" content="和温陣国 公式サイト" />
-    <meta property="og:description" content="和温陣国の公式サイト。歴史・文化・地理情報を優しくまとめた游忳展示アーカイブ。" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ec2045.github.io/Waon-Jinkoku/" />
-    <!-- アイコンの追加 -->
     <link rel="icon" href="icon.png" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=DotGothic16&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=DotGothic16&display=swap" rel="stylesheet">
     <style>
         body {
             background-color: #0a0a0a;
             color: #e0e0e0;
             font-family: 'Noto Serif JP', serif;
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
-
         .pixel-font {
             font-family: 'DotGothic16', sans-serif;
         }
-
         .hero-section {
             position: relative;
-            height: 90vh;
+            height: 60vh;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
             border-bottom: 2px solid #333;
         }
-
         .hero-bg-image {
             position: absolute;
             top: 0;
@@ -44,528 +34,373 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.3;
+            opacity: 0.2;
             filter: grayscale(1) contrast(1.2);
             z-index: 0;
         }
-
-        .yin-yang-overlay {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(255, 0, 0, 0.2) 0%, rgba(0, 0, 255, 0.2) 100%);
-            border-radius: 50%;
-            filter: blur(60px);
-            animation: pulse 8s ease-in-out infinite alternate;
-            z-index: 1;
-        }
-
-        @keyframes pulse {
-            from {
-                transform: scale(1);
-                opacity: 0.2;
-            }
-
-            to {
-                transform: scale(1.2);
-                opacity: 0.4;
-            }
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+        .tab-btn {
+            position: relative;
+            padding: 1rem 2rem;
             transition: all 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: #ff0000;
-            background: rgba(255, 255, 255, 0.06);
-        }
-
-        .flag-frame,
-        .staff-frame {
-            position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 10px;
-            background: #000;
-        }
-
-        .special-staff-gradient {
-            background: linear-gradient(to bottom, transparent, rgba(212, 175, 55, 0.1), transparent);
-        }
-
-        .info-label {
-            color: #ff0000;
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.25rem;
-        }
-
-        /* モーダル関連 */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 100;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(8px);
-        }
-
-        .modal-content {
-            background-color: #111;
-            margin: 5% auto;
-            padding: 40px;
-            border: 1px solid #333;
-            width: 90%;
-            max-width: 600px;
-            position: relative;
-            box-shadow: 0 0 30px rgba(255, 0, 0, 0.2);
-        }
-
-        .close-btn {
-            position: absolute;
-            right: 20px;
-            top: 10px;
             color: #666;
-            font-size: 30px;
-            cursor: pointer;
+            border-bottom: 2px solid transparent;
         }
-
-        .close-btn:hover {
-            color: white;
+        .tab-btn.active {
+            color: #ff0000;
+            border-bottom: 2px solid #ff0000;
+            background: rgba(255, 0, 0, 0.05);
         }
-
-        input,
-        select,
-        textarea {
-            background: #1a1a1a;
-            border: 1px solid #333;
-            color: white;
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+        .map-container {
+            border: 2px solid #333;
+            background: #000;
+            overflow: hidden;
+            position: relative;
+        }
+        .map-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .map-image:hover {
+            transform: scale(1.02);
+        }
+        input, select, textarea {
+            background: #1a1a1a !important;
+            border: 1px solid #333 !important;
+            color: white !important;
             padding: 12px;
             width: 100%;
             margin-top: 8px;
             border-radius: 2px;
         }
-
-        input:focus,
-        select:focus,
-        textarea:focus {
+        input:focus, select:focus, textarea:focus {
             outline: none;
-            border-color: #ff0000;
+            border-color: #ff0000 !important;
         }
-
-        label {
-            font-size: 0.8rem;
-            color: #aaa;
-            display: block;
-            margin-top: 15px;
+        .news-card {
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            background: linear-gradient(135deg, rgba(234, 179, 8, 0.05) 0%, transparent 100%);
+            transition: all 0.3s ease;
+        }
+        .news-card:hover {
+            border-color: rgba(234, 179, 8, 0.8);
+            background: rgba(234, 179, 8, 0.1);
+            transform: translateY(-2px);
         }
     </style>
 </head>
-
 <body>
 
     <!-- ナビゲーション -->
-    <nav
-        class="fixed w-full z-50 bg-black/80 border-b border-white/10 px-6 py-4 flex justify-between items-center backdrop-blur-md">
+    <nav class="fixed w-full z-50 bg-black/90 border-b border-white/10 px-6 py-4 flex justify-between items-center backdrop-blur-md">
         <div class="text-2xl font-bold tracking-widest pixel-font flex items-center gap-3">
-            <div
-                class="w-8 h-8 rounded-full bg-gradient-to-b from-red-600 to-blue-700 shadow-[0_0_10px_rgba(255,0,0,0.5)]">
-            </div>
+            <div class="w-8 h-8 rounded-full bg-gradient-to-b from-red-600 to-blue-700 shadow-[0_0_10px_rgba(255,0,0,0.3)]"></div>
             和温陣国
         </div>
-        <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest">
-            <a href="#about" class="hover:text-red-500 transition">建国理念</a>
-            <a href="#culture" class="hover:text-blue-500 transition">杖文化</a>
-            <a href="#tradition" class="hover:text-red-500 transition">王の儀礼</a>
-            <a href="#history" class="hover:text-blue-500 transition">歴史</a>
-            <a href="#contact" class="hover:text-blue-500 transition">謁見の間</a>
+        <div class="hidden md:flex space-x-6 text-xs uppercase tracking-widest items-center">
+            <a href="https://ec2045.github.io/WEN/" target="_blank" class="flex items-center gap-2 text-yellow-500 hover:text-yellow-400 transition bg-yellow-500/10 px-3 py-1 rounded border border-yellow-500/20">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
+                </span>
+                和温放送局 (WEN)
+            </a>
+            <a href="#contact" class="hover:text-red-500 transition">謁見の間</a>
         </div>
     </nav>
 
-    <!-- ヒーローセクション -->
+    <!-- ヒーロー -->
     <section class="hero-section">
-        <img src="旗.png" alt="和温陣国の旗 背景" class="hero-bg-image">
-        <div class="yin-yang-overlay"></div>
-        <div class="text-center z-10 px-4">
-            <h1 class="text-6xl md:text-8xl font-bold mb-6 tracking-tighter pixel-font drop-shadow-2xl">和温陣国</h1>
-            <p class="text-xl md:text-2xl text-gray-300 mb-4 max-w-2xl mx-auto font-light leading-relaxed">
-                均衡と調和、そして秩序ある混沌。<br>
-                古の知恵をデジタルの極地に刻む国家。
-            </p>
-            <p class="text-sm tracking-[0.3em] text-zinc-500 mb-10 pixel-font uppercase">
-                Location: La-Ukuka / Capital: Wajin-Tofu
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-6">
-                <button onclick="openModal('censusModal')"
-                    class="bg-white text-black px-10 py-4 rounded-sm font-bold hover:bg-red-600 hover:text-white transition duration-300 pixel-font">
-                    国勢調査
-                </button>
-                <button onclick="openModal('entryModal')"
-                    class="border border-white px-10 py-4 rounded-sm font-bold hover:bg-blue-600 transition duration-300 pixel-font">
-                    入国申請
-                </button>
-            </div>
+        <img src="旗.png" alt="和温陣国の旗" class="hero-bg-image">
+        <div class="text-center z-10 px-4 mt-12">
+            <h1 class="text-5xl md:text-7xl font-bold mb-4 pixel-font drop-shadow-lg text-white">和温陣国</h1>
+            <p class="text-zinc-500 tracking-[0.4em] text-sm uppercase pixel-font">State Information Management System</p>
         </div>
     </section>
 
-    <!-- 国旗と理念・国家詳細 -->
-    <section id="about" class="py-24 px-6 max-w-6xl mx-auto">
-        <div class="grid md:grid-cols-2 gap-16 items-center">
-            <div class="order-2 md:order-1">
-                <div class="flag-frame shadow-2xl">
-                    <img src="旗.png" alt="和温陣国の旗" class="w-full h-auto block">
-                    <div
-                        class="absolute bottom-0 right-0 bg-black/70 px-3 py-1 text-[10px] tracking-widest pixel-font border-t border-l border-white/20">
-                        NATIONAL_FLAG_VER_1.0
-                    </div>
-                </div>
-                <!-- 国家詳細カード -->
-                <div class="mt-8 grid grid-cols-2 gap-4">
-                    <div class="card p-4">
-                        <div class="info-label pixel-font tracking-tighter">CAPITAL</div>
-                        <div class="text-lg font-bold">和陣当府</div>
-                    </div>
-                    <div class="card p-4">
-                        <div class="info-label pixel-font tracking-tighter">LOCATION</div>
-                        <div class="text-lg font-bold">ラ＝ウクカ大陸</div>
-                    </div>
-                </div>
-            </div>
-            <div class="order-1 md:order-2">
-                <h2 class="text-4xl font-bold mb-8 pixel-font border-l-4 border-red-600 pl-6">和温陣の旗</h2>
-                <p class="text-gray-300 mb-8 leading-loose text-lg">
-                    我らが国旗に刻まれた中央の「ピクセル陰陽」は、伝統的な調和と現代のデジタル情報の融合を象徴している。周囲の幾何学的な「陣」の模様は、外敵を退け、内なる平和を守る強固な結界を表す。
-                </p>
-                <div class="space-y-4">
-                    <div class="flex items-center gap-4 group">
-                        <div class="w-4 h-4 bg-red-600 rounded-full group-hover:scale-125 transition"></div>
-                        <span class="text-sm tracking-widest">赤：生命の情熱と活力</span>
-                    </div>
-                    <div class="flex items-center gap-4 group">
-                        <div class="w-4 h-4 bg-blue-700 rounded-full group-hover:scale-125 transition"></div>
-                        <span class="text-sm tracking-widest">青：知性と精神の静寂</span>
-                    </div>
-                    <div class="flex items-center gap-4 group">
-                        <div class="w-4 h-4 bg-white rounded-full group-hover:scale-125 transition"></div>
-                        <span class="text-sm tracking-widest">白：可能性に満ちた空（くう）</span>
-                    </div>
-                    <div class="flex items-center gap-4 group">
-                        <div class="w-4 h-4 bg-zinc-800 rounded-full group-hover:scale-125 transition"></div>
-                        <span class="text-sm tracking-widest">黒：絶対的な秩序と基盤</span>
-                    </div>
-                </div>
-            </div>
+    <!-- タブナビ -->
+    <div class="sticky top-[73px] z-40 bg-black border-b border-white/10">
+        <div class="max-w-6xl mx-auto flex justify-center">
+            <button onclick="switchTab('tab-overview')" id="btn-tab-overview" class="tab-btn active pixel-font text-xs md:text-sm uppercase">国家概要</button>
+            <button onclick="switchTab('tab-culture')" id="btn-tab-culture" class="tab-btn pixel-font text-xs md:text-sm uppercase">文化・歴史</button>
+            <button onclick="switchTab('tab-map')" id="btn-tab-map" class="tab-btn pixel-font text-xs md:text-sm uppercase">国土地図</button>
         </div>
-    </section>
+    </div>
 
-    <!-- 杖文化 -->
-    <section id="culture" class="py-24 bg-zinc-900/20 px-6">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-bold mb-12 text-center pixel-font">和温陣国の杖文化</h2>
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <p class="text-lg text-gray-300 leading-relaxed mb-6">
-                        和温陣国において「杖」は特別な意味を持つ。それは単なる歩行の補助具ではなく、個人の精神性や身分、そして扱う「陣」の特性を体現する一般的な道具である。
-                    </p>
-                    <p class="text-gray-400 mb-8">
-                        国民は各々の役割に応じた杖を所持しており、その形状や装飾は多岐にわたる。
-                    </p>
-                    <div class="grid grid-cols-1 gap-4">
-                        <div class="card p-4 rounded-sm flex items-center gap-4">
-                            <span class="text-blue-400 font-bold">● 一般的な杖の多様性</span>
-                            <span class="text-xs text-zinc-500">（画像参照：杖.png）</span>
+    <!-- コンテンツ -->
+    <main class="max-w-6xl mx-auto py-12 px-6 min-h-screen">
+        
+        <!-- 国家概要 -->
+        <div id="tab-overview" class="tab-content active">
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <div class="space-y-8">
+                    <div class="border-l-4 border-red-600 pl-6">
+                        <h2 class="text-3xl font-bold mb-4 pixel-font italic">和温陣の旗</h2>
+                        <p class="text-gray-400 leading-relaxed">デジタルと伝統、そして「安定」の象徴。</p>
+                    </div>
+                    <img src="旗.png" alt="国旗" class="w-full border border-white/10 shadow-2xl">
+                </div>
+                <div class="space-y-6">
+                    <!-- 入国管理システムカード -->
+                    <div class="card p-8 border-l-2 border-red-600">
+                        <h3 class="text-xl font-bold mb-4 pixel-font italic text-red-500">入国管理システム</h3>
+                        <p class="text-sm text-zinc-400 mb-6">ラ＝ウクカ大陸への渡航、および市民権の取得には公式の「入国審査」が必要です。</p>
+                        <div class="flex flex-col gap-4">
+                            <button onclick="openModal('entryModal')" class="w-full bg-red-600 text-white py-4 font-bold hover:bg-red-700 transition pixel-font shadow-lg">入国審査を開始する</button>
+                            <button onclick="openModal('censusModal')" class="w-full border border-white/20 py-3 font-bold hover:bg-zinc-800 transition pixel-font text-sm">国勢調査に協力する</button>
                         </div>
                     </div>
+
+                    <!-- Wニュースサイトカード -->
+                    <a href="https://ec2045.github.io/WEN/" target="_blank" class="news-card block p-6 rounded relative overflow-hidden group">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-xl font-bold pixel-font text-yellow-500 flex items-center gap-2">
+                                <span class="block w-2 h-2 bg-yellow-500 animate-pulse rounded-full"></span>
+                                Wニュース公式サイト
+                            </h3>
+                            <span class="text-[10px] text-yellow-600 border border-yellow-900 px-2 py-0.5 rounded">OFFICIAL LINK</span>
+                        </div>
+                        <p class="text-xs text-zinc-400 leading-relaxed group-hover:text-zinc-200 transition">
+                            和温放送局（WEN）による最新の情勢配信。入国前に大陸の現状を確認することを推奨します。
+                        </p>
+                        <div class="mt-4 flex justify-end">
+                            <span class="text-[10px] pixel-font text-yellow-500 opacity-50 group-hover:opacity-100 transition">EXTERNAL_SITE >></span>
+                        </div>
+                    </a>
                 </div>
-                <div class="staff-frame shadow-xl">
-                    <img src="杖.png" alt="杖の種類例（カラー）"
-                        class="w-full h-auto block grayscale-[0.2] hover:grayscale-0 transition duration-500">
-                    <div
-                        class="absolute -top-3 -right-3 bg-black border border-white/20 px-3 py-1 text-[10px] tracking-widest pixel-font shadow-lg">
-                        VARIATION_OF_STAFFS
+            </div>
+        </div>
+
+        <!-- 文化・歴史 -->
+        <div id="tab-culture" class="tab-content">
+            <div class="space-y-16">
+                <section class="grid md:grid-cols-2 gap-12 items-center">
+                    <!-- 左側の画像エリア: 和温の杖を上に配置 -->
+                    <div class="space-y-6">
+                        <div class="p-6 bg-yellow-500/5 border border-yellow-500/20 rounded">
+                            <img src="和温の杖.png" alt="和温の杖" class="h-24 mx-auto mb-4 drop-shadow-[0_0_10px_rgba(212,175,55,0.4)]">
+                            <p class="text-xs text-center text-yellow-500 font-bold pixel-font">王（仮）専用機：和温の杖</p>
+                        </div>
+                        <img src="杖.png" alt="杖の文化" class="w-full border border-white/5 rounded shadow-lg">
                     </div>
+                    
+                    <div>
+                        <h2 class="text-3xl font-bold mb-6 pixel-font">和温の杖</h2>
+                        <p class="text-gray-300 leading-relaxed mb-6">
+                            この国における「安定」は、杖を介した「陣」の展開によって維持される。国民は各々の役割に基づいた杖を所持し、それは一生の伴侶となる。
+                        </p>
+                        <div class="p-4 border-l-2 border-zinc-700 bg-zinc-900/40">
+                            <p class="text-xs text-zinc-500 italic">
+                                ※王（仮）専用機は、大陸全土の「構造維持」を司る中核デバイスとして、特別なライセンス管理下にあります。
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <div class="text-center py-12 border-y border-white/5 bg-zinc-900/20">
+                    <h3 class="text-2xl font-bold mb-6 pixel-font">歴史のアーカイブ</h3>
+                    <button onclick="downloadHistory()" class="bg-white text-black px-10 py-4 font-bold hover:bg-red-600 hover:text-white transition pixel-font inline-flex items-center gap-3">
+                        📖 歴史書を閲覧 (.txt)
+                    </button>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- 王の儀礼（和温の杖） -->
-    <section id="tradition" class="py-24 border-y border-white/5 special-staff-gradient">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <div
-                class="inline-block mb-8 p-4 bg-black/50 border border-yellow-600/30 rounded-lg shadow-[0_0_20px_rgba(212,175,55,0.2)]">
-                <img src="和温の杖.png" alt="和温の杖" class="h-48 w-auto mx-auto block">
-            </div>
-            <h2 class="text-4xl font-bold mb-10 pixel-font">王（仮）専用：和温の杖</h2>
-            <p class="text-xl text-gray-300 leading-relaxed mb-12">
-                数ある杖の中でも、唯一無二の存在が<span
-                    class="text-yellow-500 font-bold underline decoration-yellow-500/30 underline-offset-8">「和温の杖」</span>である。
-                即位の儀において王（仮）へと託されるこの杖は、国家の均衡そのものを象徴し、すべての「陣」を統べる権能を有する。
-            </p>
-            <div class="grid md:grid-cols-3 gap-8 text-left">
-                <div class="card p-8 rounded-sm border-t-2 border-t-red-600">
-                    <h3 class="font-bold text-red-500 mb-4 text-xl pixel-font">導きの権能</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">全ての杖の原点として、民の精神を正しい調和へと導く。</p>
-                </div>
-                <div class="card p-8 rounded-sm border-t-2 border-t-blue-500">
-                    <h3 class="font-bold text-blue-400 mb-4 text-xl pixel-font">裁きの権能</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">不調和を正し、国家の秩序を絶対的なものとする。</p>
-                </div>
-                <div class="card p-8 rounded-sm border-t-2 border-t-yellow-500">
-                    <h3 class="font-bold text-yellow-500 mb-4 text-xl pixel-font">創造の権能</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">新たな世界の陣を描き、和温の理を拡張する。</p>
+        <!-- 地図 -->
+        <div id="tab-map" class="tab-content">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold mb-8 pixel-font text-center">ラ＝ウクカ大陸全図</h2>
+                <div class="map-container rounded shadow-2xl">
+                    <img src="map.png" alt="地図" class="map-image">
+                    <div class="absolute top-4 left-4 bg-black/80 px-3 py-1 border border-white/10 text-[10px] pixel-font">MAP_ID: LA-UKUKA_01</div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- 歴史書セクション（一番下へ移動） -->
-    <section id="history" class="py-24 bg-gradient-to-b from-black to-zinc-900 px-6">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl font-bold mb-8 pixel-font">和温陣国の歴史</h2>
-            <p class="text-gray-300 mb-10 leading-loose">
-                この国の歩み、そして「ラ＝ウクカ大陸」に刻まれた記憶。職人の絶望から生まれた魔王の反逆、そして安定を求めた民の記録が綴られた古文書を公開します。
-            </p>
-            <div class="card p-10 border-dashed border-2 border-white/20 inline-block w-full">
-                <div class="text-5xl mb-6">📜</div>
-                <h3 class="text-2xl font-bold mb-4">和温陣国 歴史書</h3>
-                <p class="text-sm text-zinc-500 mb-8">
-                    ファイル形式: .txt / 文字コード: UTF-8<br>
-                    著: 歴代の記録官
-                </p>
-                <button onclick="downloadHistory()"
-                    class="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-12 rounded-sm transition duration-300 pixel-font flex items-center gap-3 mx-auto">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                    </svg>
-                    歴史書をダウンロード
-                </button>
-            </div>
-        </div>
-    </section>
+    </main>
 
     <!-- フッター -->
-    <footer id="contact" class="bg-black py-16 border-t border-white/10 text-center">
-        <div class="mb-10">
-            <div class="flex justify-center gap-8 text-sm tracking-[0.2em] font-light">
-                <span class="text-zinc-500 hover:text-white cursor-pointer transition">Terminal</span>
-                <span class="text-zinc-500 hover:text-white cursor-pointer transition">Repository</span>
-                <span class="text-zinc-500 hover:text-white cursor-pointer transition">Network</span>
+    <footer id="contact" class="bg-black py-16 border-t border-white/10">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <div class="text-2xl font-bold pixel-font mb-6 tracking-widest text-zinc-400">和温陣国</div>
+            <div class="flex justify-center gap-8 mb-8">
+                <a href="https://ec2045.github.io/WEN/" target="_blank" class="text-yellow-600 hover:text-yellow-400 transition text-sm font-bold pixel-font">WEN-和温放送局</a>
             </div>
+            <p class="text-zinc-700 text-[10px]">&copy; 2024 Wajin-Tofu Records. All Rights Reserved.</p>
         </div>
-        <p class="text-zinc-600 text-[10px] tracking-widest uppercase">
-            &copy; 2024 和温陣国 Official Site. <br class="md:hidden"> All the countries and continents mentioned here are
-            fictional.
-        </p>
     </footer>
 
-    <!-- 国勢調査モーダル -->
-    <div id="censusModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('censusModal')">&times;</span>
-            <h2 class="text-2xl font-bold mb-4 pixel-font border-b border-red-600 pb-2 italic">和温陣国 国勢調査フォーム</h2>
-            <form id="censusForm" onsubmit="handleForm(event, '国勢調査が完了しました。貴殿の精神波形を記録しました。')">
-                <label>氏名（真名）</label>
-                <input type="text" required placeholder="例：ラ＝ウクカの開拓者">
-
-                <label>現在の所持杖のタイプ</label>
-                <select required>
-                    <option value="">選択してください</option>
-                    <option value="wooden">木製（一般的）</option>
-                    <option value="crystal">魔晶石入り</option>
-                    <option value="iron">鋼鉄製（重厚）</option>
-                    <option value="none">未所持</option>
-                </select>
-
-                <label>居住地区</label>
-                <select required>
-                    <option value="">選択してください</option>
-                    <option value="tofu">和陣当府 中央区</option>
-                    <option value="border">ラ＝ウクカ 境界領域</option>
-                    <option value="outside">大陸外</option>
-                </select>
-
-                <label>国家への貢献意欲</label>
-                <input type="range" min="0" max="100" class="mt-4">
-
-                <button type="submit"
-                    class="w-full bg-red-600 text-white py-4 mt-8 font-bold hover:bg-red-700 transition pixel-font">調査回答を送信</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- 入国申請モーダル -->
-    <div id="entryModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('entryModal')">&times;</span>
-            <h2 class="text-2xl font-bold mb-4 pixel-font border-b border-blue-600 pb-2 italic">ラ＝ウクカ大陸 入国申請</h2>
-            <form id="entryForm" onsubmit="submitEntryForm(event)">
-                <label>申請者名 (Name / ID)</label>
-                <input type="text" name="name" required placeholder="例：ラ＝ウクカの旅人">
-
-                <label>出身地 (Origin)</label>
-                <input type="text" name="origin" required placeholder="ラ＝ウクカ大陸内、あるいは異世界の地名">
-
-                <label>属性/専門分野 (Attribute)</label>
-                <select name="attribute" required>
-                    <option value="">選択してください</option>
-                    <option value="陣法">陣法 (Formation)</option>
-                    <option value="工芸">工芸 (Craft)</option>
-                    <option value="記録">記録 (Record)</option>
-                    <option value="調律">調律 (Tuning)</option>
-                    <option value="その他">その他 (Other)</option>
-                </select>
-
-                <label>入国目的 (Purpose)</label>
-                <textarea name="purpose" rows="3" required placeholder="和温の理を学ぶため、等"></textarea>
-
-                <div class="flex items-start gap-4 mt-6">
-                    <input type="checkbox" name="verification" required class="w-5 h-5 mt-1 cursor-pointer">
-                    <span class="text-xs text-gray-400 leading-relaxed">
-                        私は和温陣国の法を遵守し、「和温の陣」における秩序を乱さないことをここに誓約いたします。
-                    </span>
+    <!-- 入国審査モーダル -->
+    <div id="entryModal" class="modal fixed inset-0 z-[100] hidden bg-black/95 backdrop-blur-md overflow-y-auto">
+        <div class="bg-zinc-900 max-w-lg mx-auto my-10 p-8 border border-white/10 relative shadow-2xl">
+            <span class="absolute top-4 right-4 text-3xl cursor-pointer text-zinc-500 hover:text-white" onclick="closeModal('entryModal')">&times;</span>
+            <div class="mb-6 border-b border-blue-600/30 pb-4">
+                <h2 class="text-2xl font-bold pixel-font text-blue-500 italic">大陸入国審査フォーム</h2>
+            </div>
+            <form id="entryForm" onsubmit="handleEntrySubmission(event)">
+                <div class="space-y-4">
+                    <div>
+                        <label class="text-xs text-zinc-500 block mb-1">申請者名</label>
+                        <input type="text" id="entryName" required placeholder="Name / ID">
+                    </div>
+                    <div>
+                        <label class="text-xs text-zinc-500 block mb-1">入国目的</label>
+                        <textarea id="entryPurpose" rows="3" required placeholder="目的を記入してください"></textarea>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-xs text-zinc-500 block mb-1">所持杖の種類</label>
+                            <select id="staffType">
+                                <option value="standard">一般用（標準）</option>
+                                <option value="unstable">不安定（魔王領産）</option>
+                                <option value="none">未所持</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs text-zinc-500 block mb-1">渡航方法</label>
+                            <select id="travelMode">
+                                <option value="sea">海上（定期船）</option>
+                                <option value="teleport">陣（空間転移）</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 p-4 bg-white/5 border border-white/10 mt-6">
+                        <input type="checkbox" required class="w-5 h-5 mt-1 cursor-pointer">
+                        <span class="text-[10px] text-zinc-400">私は和温陣国の法を遵守し、「安定」を乱さないことを誓います。</span>
+                    </div>
                 </div>
-
-                <button type="submit" id="entrySubmitBtn"
-                    class="w-full bg-blue-600 text-white py-4 mt-8 font-bold hover:bg-blue-700 transition pixel-font flex justify-center items-center gap-2">
-                    <span>入国申請を提出</span>
-                </button>
+                <button type="submit" id="submitBtn" class="w-full bg-blue-600 text-white py-4 mt-8 font-bold hover:bg-blue-700 transition pixel-font">申請データを送信</button>
             </form>
         </div>
     </div>
 
-    <!-- 完了メッセージ用カスタムボックス -->
+    <!-- 国勢調査モーダル -->
+    <div id="censusModal" class="modal fixed inset-0 z-[100] hidden bg-black/95 backdrop-blur-md overflow-y-auto">
+        <div class="bg-zinc-900 max-w-lg mx-auto my-10 p-8 border border-white/10 relative shadow-2xl">
+            <span class="absolute top-4 right-4 text-3xl cursor-pointer text-zinc-500 hover:text-white" onclick="closeModal('censusModal')">&times;</span>
+            <div class="mb-6 border-b border-red-600/30 pb-4">
+                <h2 class="text-2xl font-bold pixel-font text-red-500 italic">第1回 和温陣国 国勢調査</h2>
+                <p class="text-[10px] text-zinc-500 mt-1 uppercase">National Population Census</p>
+            </div>
+            <form onsubmit="handleCensusSubmission(event)">
+                <div class="space-y-5">
+                    <div>
+                        <label class="text-xs text-zinc-500 block mb-1">現在の居住地</label>
+                        <select required>
+                            <option value="">選択してください</option>
+                            <option value="capital">和陣当府（中央）</option>
+                            <option value="boundary">ラ＝ウクカ境界（緩衝区）</option>
+                            <option value="unstable">不安定の地（旧領）</option>
+                            <option value="external">国外 / 渡航中</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-xs text-zinc-500 block mb-1">年齢層</label>
+                        <select required>
+                            <option value="under20">20歳未満</option>
+                            <option value="20-40">20代〜40代</option>
+                            <option value="40-60">40代〜60代</option>
+                            <option value="over60">60歳以上</option>
+                            <option value="immortal">不老長寿</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-xs text-zinc-500 block mb-1">現在の「安定」度合（自己申告）</label>
+                        <input type="range" min="1" max="100" value="80" class="w-full h-2 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-red-600">
+                        <div class="flex justify-between text-[10px] text-zinc-600 mt-1">
+                            <span>不安定</span>
+                            <span>中立</span>
+                            <span>完全安定</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-xs text-zinc-500 block mb-1">政府への要望・意見</label>
+                        <textarea placeholder="（例）杖の配給を増やしてほしい、等" rows="3"></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-zinc-100 text-black py-4 mt-8 font-bold hover:bg-red-600 hover:text-white transition pixel-font">回答を正式送信</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- メッセージボックス -->
     <div id="msgBox" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[200] hidden">
-        <div class="bg-zinc-900 border-2 border-white p-8 text-center shadow-[0_0_50px_rgba(255,255,255,0.3)]">
-            <p id="msgText" class="text-xl pixel-font mb-6"></p>
-            <button onclick="hideMsg()" class="bg-white text-black px-8 py-2 font-bold pixel-font">承知した</button>
+        <div class="bg-zinc-900 border-2 border-white p-8 text-center shadow-[0_0_50px_rgba(0,0,0,1)]">
+            <div id="msgIcon" class="text-4xl mb-4">📋</div>
+            <p id="msgText" class="text-xl pixel-font mb-6 leading-relaxed"></p>
+            <button onclick="hideMsg()" class="bg-white text-black px-10 py-2 font-bold pixel-font hover:bg-zinc-200 transition">確認</button>
         </div>
     </div>
 
     <script>
-        async function downloadHistory() {
-            try {
-                const response = await fetch('./history.txt');
-                if (!response.ok) throw new Error('ネットワークエラー');
-                const text = await response.text();
-                const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = '和温陣国_歴史書.txt';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                window.URL.revokeObjectURL(url);
-            } catch (error) {
-                console.error(error);
-                alert('歴史書のダウンロードに失敗しました。');
-            }
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            document.getElementById('btn-' + tabId).classList.add('active');
+            window.scrollTo({ top: 300, behavior: 'smooth' });
         }
 
-        // モーダル制御
-        function openModal(id) {
-            document.getElementById(id).style.display = "block";
+        function handleEntrySubmission(event) {
+            event.preventDefault();
+            const name = document.getElementById('entryName').value;
+            closeModal('entryModal');
+            document.getElementById('msgIcon').innerText = "📋";
+            showCustomMsg(`${name} 殿の入国申請を受理しました。審査完了までお待ちください。`);
+            event.target.reset();
+        }
+
+        function handleCensusSubmission(event) {
+            event.preventDefault();
+            closeModal('censusModal');
+            document.getElementById('msgIcon').innerText = "📊";
+            showCustomMsg(`国勢調査への協力に感謝します。データは「安定」の維持に活用されます。`);
+            event.target.reset();
+        }
+
+        function downloadHistory() {
+            const history = `和温陣国 歴史書\n\n和温陣国の杖の特徴は安定性...`;
+            const blob = new Blob([history], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = '和温陣国_歴史書.txt';
+            document.body.appendChild(a); a.click();
+            document.body.removeChild(a);
+        }
+
+        function openModal(id) { 
+            document.getElementById(id).classList.remove('hidden'); 
             document.body.style.overflow = "hidden";
         }
-        function closeModal(id) {
-            document.getElementById(id).style.display = "none";
+        function closeModal(id) { 
+            document.getElementById(id).classList.add('hidden'); 
             document.body.style.overflow = "auto";
         }
-
-        // フォーム処理
-        function handleForm(event, message) {
-            event.preventDefault();
-            const modalId = event.target.closest('.modal').id;
-            closeModal(modalId);
-            showCustomMsg(message);
-        }
-
-        // 入国申請フォームの送信 (GAS連携)
-        const GAS_URL = 'https://script.google.com/macros/s/AKfycbylpuD6E9kPoLazn-iKOXYIF9EHJqfHPfp3w6KLGpub1-nj0QL5TJzyRWN5Ea0_zMCh2Q/exec';
-
-        async function submitEntryForm(event) {
-            event.preventDefault();
-            const form = event.target;
-            const btn = document.getElementById('entrySubmitBtn');
-            const originalBtnText = btn.innerHTML;
-
-            // 読み込み状態
-            btn.disabled = true;
-            btn.innerHTML = '<span class="animate-spin inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full"></span> 申請中...';
-
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
-
-            try {
-                // GASへの送信
-                // GAS側が正しくCORS設定されていない場合やリダイレクトを処理するために
-                // 実際にはもう少し複雑な処理が必要な場合がありますが、標準的なPOSTを試みます
-                if (GAS_URL === 'YOUR_GAS_WEBAPP_URL_HERE') {
-                    // URLが設定されていない場合はモック動作
-                    await new Promise(resolve => setTimeout(resolve, 1500));
-                    console.log('Mock submission data:', data);
-                } else {
-                    await fetch(GAS_URL, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(data)
-                    });
-                }
-
-                closeModal('entryModal');
-                showCustomMsg('入国申請を受理しました。和陣当府の審査をお待ちください。');
-                form.reset();
-            } catch (error) {
-                console.error('Submission error:', error);
-                alert('申請中にエラーが発生しました。設定を確認してください。');
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = originalBtnText;
-            }
-        }
-
-        function showCustomMsg(message) {
-            document.getElementById('msgText').innerText = message;
+        function showCustomMsg(text) {
+            document.getElementById('msgText').innerText = text;
             document.getElementById('msgBox').classList.remove('hidden');
         }
-
         function hideMsg() {
             document.getElementById('msgBox').classList.add('hidden');
         }
-
-        // ウィンドウ外クリックでモーダルを閉じる
-        window.onclick = function (event) {
-            if (event.target.className === 'modal') {
-                event.target.style.display = "none";
-                document.body.style.overflow = "auto";
-            }
+        window.onclick = function(e) {
+            if (e.target.classList.contains('modal')) closeModal(e.target.id);
         }
-
-        // スムーススクロール
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
     </script>
 </body>
-
 </html>
